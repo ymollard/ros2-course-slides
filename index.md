@@ -289,6 +289,8 @@ Other ROS-compatible simulators: Webots, CoppeliaSim, Unity 3D, etc.
 
 **Objective**: validate the behavior of the robot in a near-real environment
 
+*Note*: colorful orange-blue Gazebo is recent, grey-ish Gazebo is the old Gazebo Classic, EOL in January
+
 ---
 
 ![](assets/gazebo-warehouse.jpg)
