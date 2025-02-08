@@ -1,6 +1,5 @@
 ---
 marp: true
-math: katex
 ---
 <!-- 
 class: invert

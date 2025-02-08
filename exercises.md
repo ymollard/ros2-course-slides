@@ -1,6 +1,5 @@
 ---
 marp: true
-math: katex
 ---
 <!-- 
 class: invert
@@ -247,7 +246,6 @@ Finally, with an `Image` display, also visualize the raw uncompressed RGB-D came
 
 ℹ️ If the depth image appears striped, it is a RViz2 bug. Use another ROS tool to visualize it:
 ``` bash
-sudo apt install ros-jazzy-image-tools
 ros2 run image_tools showimage image:=/head_front_camera/depth_image
 ```
 
