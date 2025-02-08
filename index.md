@@ -28,6 +28,12 @@ Read slides on:
 
 [Switch to exercises](/exercises)
 
+While we're waiting, install [Visual Studio Code](https://code.visualstudio.com/Download) and type:
+``` bash
+git clone https://github.com/cboostpverwimp/ros2-course
+code ros2-course/
+```
+
 ![bg right:25% 75%](assets/ros_logo.svg)
 
 ---
