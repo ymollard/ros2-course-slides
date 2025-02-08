@@ -34,19 +34,19 @@ section {
 1. [ Prepare Your Work Environment](#3)
 2. [ `turtlesim`, CLI Tools](#6)
 3. [ `turtlesim`, Client Libs](#8)
-4. [ RMW Bridge to TCP/IP, MQTT or WS](#9)
+4. [ RMW Bridge to TCP/IP, MQTT or WS](#9) [uncorrected]
 
 **Exercises for DAY 2**
 
 5. [ Discover Tiago's ROS 2 Integration](#10)
 6. [ Tiago 2D Navigation](#18)
-7. [ Demonstrate micro-ROS](#20)
+7. [ Demonstrate micro-ROS](#20) [uncorrected]
 
 **Exercises for DAY 3**
 
 7. [ Tiago Manipulation with the Arm / Gripper](#21)
-8. [ Motoman hc10dtp/BFFP Manipulation](#27)
-9. [ Demonstrate MoveIt Servo](#28)
+8. [ Motoman hc10dtp/BFFP Manipulation](#27) [uncorrected]
+9. [ Demonstrate MoveIt Servo](#28) [uncorrected]
 
 ---
 
