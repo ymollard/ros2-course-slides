@@ -70,40 +70,40 @@ Read slides on:
     2.2. [ The ROS 2 CLI: Nodes, Topics, Parameters](#47)
     2.3. [ Asynchronous Services and Action Services](#51)
     2.4. [ RMW configuration and QoS](#54)
-    2.5. [ ROS Workspaces](#57)
-    2.6. [ Starting Nodes: run and launch files](#60)
-    2.7. [ Cloud Robotics Opening](#61)
+    2.5. [ ROS Workspaces](#58)
+    2.6. [ Starting Nodes: run and launch files](#61)
+    2.7. [ Cloud Robotics Opening](#62)
 
 
 
 ---
 
-3. [ Developing Code with ROS](#63)
-    3.1. [ File Hierarchy](#64)
-    3.2. [ ROS Client Library (RCL) for Python and C++](#71)
-    3.3. [ The 3 Types of Nodes and Their `executor`](#72)
-    3.4. [ ROS 1 vs ROS 2: Key changes](#82)
-4. [ Integration of a System into ROS 2](#84)
-    4.1. [ What is a System "Integrated" into ROS 2?](#85)
-    4.2. [ Standard Data Message Formats](#88)
-    4.3. [ Example of a Good Integration: PAL Tiago](#93)
-    4.4. [ Other Tiago Integrations to ROS 2 Tools](#95)
+3. [ Developing Code with ROS](#64)
+    3.1. [ File Hierarchy](#65)
+    3.2. [ ROS Client Library (RCL) for Python and C++](#72)
+    3.3. [ The 3 Types of Nodes and Their `executor`](#73)
+    3.4. [ ROS 1 vs ROS 2: Key changes](#83)
+4. [ Integration of a System into ROS 2](#85)
+    4.1. [ What is a System "Integrated" into ROS 2?](#86)
+    4.2. [ Standard Data Message Formats](#89)
+    4.3. [ Example of a Good Integration: PAL Tiago](#94)
+    4.4. [ Other Tiago Integrations to ROS 2 Tools](#96)
 
 ---
 
-5. [ Navigation 2 with ROS 2](#96)
-    5.1. [ 2D Robot Localization and Navigation](#96)
-    5.2. [ Mapping and SLAM](#102)
-    5.3. [ Simultaneous Localization and Mapping (SLAM)](#105)
-    5.4. [ Path Planning](#108)
-    5.5. [ Trajectory Tracking](#110)
-    5.6. [ Other tools from Nav2](#112)
-6. [ Manipulation Robotics with MoveIt 2](#113)
-    6.1. [ The URDF (Unified Robot Description Format)](#114)
-    6.2. [ The SRDF (Semantic Robot Description Format)](#115)
-    6.3. [ The `tf2` Transformation Tree](#117)
-    6.4. [ Trajectory Planning: OMPL](#122)
-    6.5. [ Overview of MoveIt 2](#127)
+5. [ Navigation 2 with ROS 2](#97)
+    5.1. [ 2D Robot Localization and Navigation](#98)
+    5.2. [ Mapping and SLAM](#103)
+    5.3. [ Simultaneous Localization and Mapping (SLAM)](#106)
+    5.4. [ Path Planning](#109)
+    5.5. [ Trajectory Tracking](#111)
+    5.6. [ Other tools from Nav2](#113)
+6. [ Manipulation Robotics with MoveIt 2](#114)
+    6.1. [ The URDF (Unified Robot Description Format)](#115)
+    6.2. [ The SRDF (Semantic Robot Description Format)](#116)
+    6.3. [ The `tf2` Transformation Tree](#118)
+    6.4. [ Trajectory Planning: OMPL](#123)
+    6.5. [ Overview of MoveIt 2](#128)
 
 <!--
 DAY 1: Introduction to ROS 2
@@ -624,6 +624,17 @@ Each component of the network can use a different DDS implementation.
 All DDS implementations of the RMW are compatible with each other, but not with non-DDS implementations like Zenoh.
 
 [🔗 Documentation on RMW implementations](https://docs.ros.org/en/humble/Concepts/Intermediate/About-Different-Middleware-Vendors.html)
+
+---
+
+### Run RMW on a microcontroller with micro-ROS
+
+- **micro-ROS client**: Runs on the microcontroller and handles communication with ROS 2 
+- **micro-ROS agent**: Runs on a CPU-based host machine and acts as a bridge between the micro-ROS client and the ROS 2 system
+- **Middleware**: lightweight RMW implementation: either `rmw_microxrcedds` or `rmw_cyclonedds_cpp`
+
+![bg right:30% 70%](assets/micro-ROS_big_logo.png)
+
 
 ---
 

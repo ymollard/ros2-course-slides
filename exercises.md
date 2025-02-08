@@ -39,13 +39,14 @@ section {
 **Exercises for DAY 2**
 
 5. [ Discover Tiago's ROS 2 Integration](#10)
-6. [ Navigation](#18)
+6. [ Tiago 2D Navigation](#18)
+7. [ Demonstrate micro-ROS](#20)
 
 **Exercises for DAY 3**
 
-7. [ Tiago Manipulation with the Arm / Gripper](#20)
-8. [ Motoman hc10dtp/BFFP Manipulation](#26)
-9. [ Demonstrate MoveIt Servo](#27)
+7. [ Tiago Manipulation with the Arm / Gripper](#21)
+8. [ Motoman hc10dtp/BFFP Manipulation](#27)
+9. [ Demonstrate MoveIt Servo](#28)
 
 ---
 
@@ -301,7 +302,19 @@ Consult the container README to obtain the commands to:
 
 ---
 
-# Exercise 7: Tiago Manipulation with Arm/Gripper
+# Exercise 7: Demonstrate micro-ROS
+
+1. Flash the microcontroller with the microROS firmware
+2. On the host machine, create a ROS 2 node that will act as the micro-ROS agent
+3. Retrieve data from/to the microcontroller e.g.:
+  - `/battery_status` of type `sensor_msgs.msg.BatteryState`
+  - `/imu` of type `sensor_msgs.msg.Imu`
+
+[Rely on that video demo](https://youtu.be/wgIKGUGSX7Y)
+
+---
+
+# Exercise 8: Tiago Manipulation with Arm/Gripper
 
 ## Part 1: Kinematics
 
@@ -377,13 +390,13 @@ This code is in 3 parts corresponding to 3 different trajectory plans. For each 
 
 ---
 
-# Exercise 8: Motoman hc10dtp/BFFP Manipulation
+# Exercise 9: Motoman hc10dtp/BFFP Manipulation
 
 TODO: I don't know yet how to guide learners to use these robots :)
 
 ---
 
-# Exercise 9: Demonstrate MoveIt Servo
+# Exercise 10: Demonstrate MoveIt Servo
 
 TODO: I don't know yet MoveIt Servo either, and I'm unsure about the difference with MoveIt relying on the regular ros2_controllers/ros2_control framework
 
