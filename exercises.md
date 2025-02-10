@@ -393,13 +393,13 @@ The node has 3 functions corresponding to 3 different trajectory plans. For each
 
 # Exercise 9: Motoman hc10dtp/BFFP Manipulation
 
-TODO: I don't know yet how to guide learners to use these robots :)
+**Open project**: define your own goals
 
 ---
 
 # Exercise 10: Demonstrate MoveIt Servo
 
-TODO: I don't know yet MoveIt Servo either, and I'm unsure about the difference with MoveIt relying on the regular ros2_controllers/ros2_control framework
+**Open project**: define your own goals
 
 MoveIt Servo facilitates realtime control of your robot arm. MoveIt Servo accepts any of the following types of commands:
 

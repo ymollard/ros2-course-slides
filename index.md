@@ -326,7 +326,7 @@ Other ROS-compatible simulators: Webots, CoppeliaSim, Unity 3D, etc.
 
 ---
 
-### Nav2, the ROS Subproject for Wheeled Robots
+### Nav2, the ROS Subproject for Navigating Robots
 
 **Objective**: trajectory calculation and mapping
 
@@ -353,7 +353,7 @@ Other ROS-compatible simulators: Webots, CoppeliaSim, Unity 3D, etc.
 ---
 
 
-## A Plumber's Toolkit to Build your Robot 
+## A Plumber's Toolkit to Build your Robot Software
 
 Several ready-to-go packages for your own robot code:
 
@@ -377,7 +377,7 @@ Popular nodes implementing Kalman filters to fuse 2D or 3D localization sensor d
 - Sequential, parallel, fallback flows
 - GUI available (groot2)
 
-![bg right:50% 85%](assets/bt-groot2.png)
+![bg right:46% 85%](assets/bt-groot2.png)
 [BehaviourTree doc for ROS 2](https://www.behaviortree.dev/docs/ros2_integration/)
 
 ---
@@ -649,7 +649,7 @@ You will generally have your workspace for your own packages `~/ros2_ws`
 ... in addition to the system workspace in which all packages are installed
 
 #### Create Your Personal Workspace (do this only once)
-To create a workspace in your personal folder, create a folder `ros2_ws` and a subfolder `src`:
+To create a workspace, create a folder `ros2_ws` and a subfolder `src`:
 
 ```bash
 ~$ mkdir -p ros2_ws/src
@@ -942,7 +942,7 @@ if __name__ == '__main__':
 
 Save this code in: `say_hello/say_hello/hello_node.py`
 
-Here, `say_hello` is duplicated: the first is the name of the ROS package; the second is the name of the Python package. The ROS package relies on a Python package.
+Here, `say_hello` is duplicated: the 1st is the name of the ROS package; the 2nd is the name of the Python package. The ROS package relies on a Python package.
 
 Declare this node as an entry point of the ROS package in `setup.py`:
 
