@@ -59,7 +59,7 @@ You need to install ROS 2 Jazzy:
 
 **Options B/C**: Pick an OS that is **Tier 1** for your ROS version (tier 1 = fully supported)
 
-**Option C**: Make sure that 3D hardware acceleration is enabled. Not-that-great option for Gazebo simulation, also for network management.
+**Option C**: Make sure that 3D hardware acceleration is enabled. Not-that-great option for powerful Gazebo simulations, also because of network management.
 
 ---
 
@@ -134,7 +134,7 @@ rm ~/swapfile
 
 # Exercise 4: RMW Bridge to TCP/IP, MQTT or WS
 
-Setup a PoC that demonstrate a bidirectionnal communication between the RMW and a MQTT or TCP/IP or WebSocket.
+Setup a PoC that demonstrates a bidirectionnal communication between the RMW and a MQTT or TCP/IP or WebSocket device.
 
 You can cover: topics, service calls, action services (e.g. Nav2 goal)
 
@@ -165,14 +165,15 @@ Below 100%, the simulation is slowed down, because of performance issues. Below 
 
 ## Part 1: Monitor Joint States
 
-With a ROS 2 CLI command, monitor the `/joint_states` topic representing the current state of all the robot's joints: their angular position, angular velocity, and torques.
+With a ROS 2 CLI command, monitor the `/joint_states` topic representing the current state of all the robot's joints: their angular position (rad or m), angular velocity (rad/s or m/s), and effort (Nm).
 
 How many joints do you find on this robot? <!-- 14 -->
 
-Identify the names of the 2 joints among these that do not have torque sensors. You will recognize them because they return the value NaN = Not A (valid) Number. <!-- left wheel and right wheel -->
+Identify the names of the 2 joints among these that do not have torque sensors. You will recognize them because they return the value NaN = Not A Number. <!-- left wheel and right wheel -->
 
 Using `ros2 topic hz <topic>`, determine the frequency (in Hertz) at which the robot publishes the state of its joints on this topic.
-Is this frequency sufficient to implement motor control?
+
+Depending the situation that frequency might be too low (e.g. for closed-loop motor control) but it is usually configurable in the ROS driver.
 
 ---
 
@@ -228,7 +229,7 @@ Teleoperate the robot to place it in front of or away from obstacles to observe 
 - LIDAR data (`scan_raw`)
 - Inertial measurement unit data (`/imu_sensor_broadcaster/imu`)
 - ~~Force sensor (`ft_sensor_controller/wrench`)~~ (broken in Jazzy / [working on it](https://github.com/ros-controls/ros2_controllers/issues/1522))
-- Sonar data (`sonar_base`) (sensor simulation works weirdly in Jazzy)
+- Sonar data (`sonar_base`) (this sonar simulation works weirdly in Jazzy)
 - The robot's transformation tree with a `TF` type display.
 In the tree, identify where the robot's IMU is located by checking only the `frame` (= reference frame) corresponding to its attachment (`base_imu_link`).
 Which axis `x`, `y`, or `z` points forward on the robot?
@@ -259,11 +260,13 @@ Simulated worlds and models (objects) are SDF files that you can manually edit.
 
 Some models are static: they are not subject to forces, not even gravity. To change this, modify `<static>false</static>` in the SDF.
 
-There are many opensource pre-designed worlds, eg https://github.com/aws-robotics/ (take the Jazzy or ROS 2 branch. ⚠️ Complex worlds will be slow)
+ℹ️ A common place to download models is the
+**Gazebo Fuel server**: https://app.gazebosim.org/
 
-ℹ️ Download models from the **Fuel server**: https://app.gazebosim.org/
+ℹ️ Each model can also be manually modified:
+[sdf_worlds/#download-the-model](https://gazebosim.org/docs/latest/sdf_worlds/#download-the-model)
 
-ℹ️ Modify a model: [sdf_worlds/#download-the-model](https://gazebosim.org/docs/latest/sdf_worlds/#download-the-model)
+There are also many opensource pre-designed worlds, eg https://github.com/aws-robotics/ (take the Jazzy or ROS 2 branch. ⚠️ Complex worlds will be slow)
 
 Remember to compile and source after modifying a world or model.
 
@@ -276,7 +279,7 @@ Consult the container README to obtain the commands to teleoperate the robot's m
 
 Open `rqt_graph` as seen in previous tutorials and note the hierarchical name (with slashes) of the velocity command topic for the mobile base.
 
-Two other nodes are present between the teleoperation node and the mobile base controller: a **multiplexer** (mux) + a **stamper**.
+Observe the 2 other nodes present between the teleoperation node and the mobile base controller: a **multiplexer** (mux) + a **stamper** (to sync time).
 
 ---
 
@@ -286,11 +289,11 @@ Consult the container README to obtain the commands to:
 
 1. Map the simulated scene using SLAM according to the documentation.
 
-2. Save the map to a file named `our_map` and then **CLOSE** SLAM.
+2. Save the map to a file named `our_map` and **CLOSE** SLAM. Compile if needed.
 
 3. Start `tiago_nav2d` to use the saved map by giving a goal in RViz.
 
-4. Move the robot to a target position using teleoperation and retrieve its position on the map from the `/amcl_pose` topic.
+4. Move the robot to a target position using teleoperation and retrieve its coordinates on the map from the `/amcl_pose` topic.
 
 5. Develop an `rclpy` node in a new package to reach the target at the recorded coordinates (Drafts [C++ and Python](https://gitlab.com/ymollard/humble-ros-cremi/-/tree/main/snippets)).
 
@@ -318,11 +321,11 @@ Consult the container README to obtain the commands to:
 
 With the help of the container README, start MoveIt2 to display the colored manipulation handles in RViz.
 
-Move the handles to define a target that does not put the robot in collision, then click **Plan & Execute** to execute the movement to the target.
+Observe the live IK solutions obtained by moving the blue ball of the effector.
 
-Which fundamental mathematical function in robotics is used each time you move the handles (without clicking anything else)?
+With the blue ball, define a target that does not put the robot in collision, then click **Plan & Execute** to execute the movement to the target.
 
-In the **Joints** tab, move the **Nullspace exploration** slider. What does this space of movement correspond to?
+In the **Joints** tab, move the **Nullspace exploration** slider to explore the Nullspace of the current end effector pose.
 
 ---
 
@@ -333,21 +336,19 @@ Three robots of different colors overlap in RViz:
 - Orange
 - Transparent (only briefly visible with each click on **Plan & Execute**)
 
-What is the difference between the three?
+What is the difference between these three?
 
 To answer, use the **Query X** checkboxes in the **Planning Request** dropdown list in the RViz displays.
-
-Do you know an algorithm that could be triggered to perform the planning of the **Plan & Execute** button?
 
 ---
 
 ## Part 3: Collision Avoidance
 
-Open the **Context** tab and in the OMPL dropdown list, verify that it is in the list of available planners.
+Open the **Context** tab, observe the list of planners available in the OMPL Library (RRT, PRM, EST, ...), and test different goals and plannings.
 
 In the RViz displays, uncheck all necessary boxes so that your robot no longer appears at all. Then check only these: **MotionPlanning** ➡️ **Scene Robot** ➡️ **Show Robot Collision**.
 
-Observe the collision model in grayscale.
+Observe the collision model in grayscale, this is the 3D view of the URDF collision model.
 
 Restart RViz to reset the displays.
 
@@ -357,7 +358,9 @@ In the **Scene Objects** tab, insert a **Box** and move it in front of the robot
 
 Define a target and click **Plan & Execute**. Verify that the object is avoided.
 
-*There seems to be a bug in this version of RViz that makes manipulating the scene object difficult and causes it to crash. If it is unusable, skip to the next part.*
+*There seems to be a bug in this version of RViz that makes manipulating the scene objects difficult, or even causes it to crash. If it is unusable, skip to the next part.*
+
+Scene objects can also be inserted via Python or come from a RGB-D camera (voxels).
 
 ---
 
@@ -369,9 +372,9 @@ Try different **Plan & Execute** targets with the kinematic chain `arm_torso`.
 
 Test also the `arm` group to observe the difference. 
 
-Finally, try with `gripper`. The gripper is not kinematic chain, so it has no colored handles. Use **Start State: random valid** to open and close the gripper\*.
+Finally, try with `gripper`. The gripper is not a kinematic chain, so it has no colored handles. Use **Goal State: random valid** to open and close the gripper\*.
 
-\* *Not very handy but fortunately this can be commanded from Python. Also, static poses could have been saved to the SRDF so that they can be cliked in MoveIt (e.g. **open_gripper**)*
+\* *Not very handy but fortunately this can be commanded from Python. Also, static poses could have been saved to the SRDF so that they can be clicked in MoveIt (e.g. **open_gripper**)*
 
 ---
 ## Part 5: Automate the Arm
@@ -380,7 +383,7 @@ We will control the arm with Python code. A draft node is already coded in the `
 
 With the help of the container README, open the node's code and execute it using its launchfile `plan.launch.py`.
 
-This code is in 3 parts corresponding to 3 different trajectory plans. For each of them, take the time to understand the code and test it. Use triple quotes to (un)comment a section of code.
+The node has 3 functions corresponding to 3 different trajectory plans. For each of them, uncomment its function call and test it:
 
 - Plan 1: Define a target in joint space.
 - Plan 2: Define a target in Cartesian space.
